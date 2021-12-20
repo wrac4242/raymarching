@@ -1,7 +1,9 @@
 use crate::general_types::*;
 
+pub mod primatives;
+
 pub struct ObjectStore {
-	pub objects: Vec<Box<dyn Object>>,
+	objects: Vec<Box<dyn Object>>,
 }
 
 impl ObjectStore {
@@ -10,8 +12,13 @@ impl ObjectStore {
 			objects: Vec::new(),
 		}
 	}
-}
 
-pub trait Object {
-	fn distance(&self, point: Point3) -> f32;
+	pub fn min_distance(&self, position: Point3) -> f32 {
+		todo!();
+		// objects vector into iterator, runs distance on all, calculates min
+	}
+
+	pub fn add_object(&mut self, object: Box<dyn Object>) {
+		self.objects.push(object);
+	}
 }
