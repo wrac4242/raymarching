@@ -17,7 +17,13 @@ impl Renderer {
 	}
 
 	fn object_init() -> objects::ObjectStore {
-		objects::ObjectStore::new()
+		let mut obj_store = objects::ObjectStore::new();
+		obj_store.add_object(Box::new(objects::primatives::Sphere::new(
+			general_types::Point3::new(0.0, 0.0, -1.0),
+			0.5,
+			general_types::colour_types::new(255, 0, 0, 255)
+		)));
+		obj_store
 	}
 
 	pub fn march_pixel(&mut self, pix: general_types::Point2) -> general_types::Colour {
@@ -25,7 +31,9 @@ impl Renderer {
 		let mut pos = general_types::Point3::new(((2.0 * pix.x)/ self.width as f32) - 1.0, ((2.0 * pix.y) / self.height as f32) -  1.0, 1.0); 
 		let mut normalized_pos = pos;
 		normalized_pos.normalize();
-		normalized_pos = normalized_pos.mul(255.0/2.0);
+		
+		// runs min distance on object store
+		let min_distance = self.object_list.min_distance(pos);
 		[(normalized_pos.x + 255.0/2.0) as u8, (normalized_pos.y + 255.0/2.0) as u8, 0x00, 0xff]
 	}
 
