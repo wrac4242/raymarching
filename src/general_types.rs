@@ -1,3 +1,5 @@
+use std::ops::{Sub, Add, Mul, Div};
+
 #[derive(Copy, Clone)]
 pub struct Point3 {
 	pub x: f32,
@@ -30,22 +32,72 @@ impl Point3 {
 	}
 	pub fn normalize(&mut self) {
 		let length = self.length();
-		self.x = self.x / length;
-		self.y = self.y / length;
-		self.z = self.z / length;
+		self.x /= length;
+		self.y /= length;
+		self.z /= length;
 	}
 
-	fn length(&self) -> f32 {
+	pub fn length(&self) -> f32 {
 		(self.x.powi(2) + self.y.powi(2) + self.z.powi(2)).sqrt()
 	}
 
-	pub fn mul(&self, scalar: f32) -> Point3 {
+}
+
+impl Sub for Point3 {
+	type Output = Point3;
+	fn sub(self, other: Point3) -> Point3 {
 		Point3 {
-			x: self.x * scalar,
-			y: self.y * scalar,
-			z: self.z * scalar
+			x: self.x - other.x,
+			y: self.y - other.y,
+			z: self.z - other.z
 		}
 	}
 }
 
+impl Add for Point3 {
+	type Output = Point3;
+	fn add(self, other: Point3) -> Point3 {
+		Point3 {
+			x: self.x + other.x,
+			y: self.y + other.y,
+			z: self.z + other.z
+		}
+	}
+}
+
+impl Mul for Point3 {
+	type Output = Point3;
+	fn mul(self, other: Point3) -> Point3 {
+		Point3 {
+			x: self.x * other.x,
+			y: self.y * other.y,
+			z: self.z * other.z
+		}
+	}
+}
+
+impl Div for Point3 {
+	type Output = Point3;
+	fn div(self, other: Point3) -> Point3 {
+		Point3 {
+			x: self.x / other.x,
+			y: self.y / other.y,
+			z: self.z / other.z
+		}
+	}
+}
+
+
 pub type Colour = [u8; 4];
+
+pub mod colour_types {
+	use crate::general_types::Colour;
+	pub fn new(r: u8, g: u8, b: u8, a: u8) -> Colour {
+		[r, g, b, a]
+	}
+}
+
+
+pub trait Object {
+	fn distance(&self, point: Point3) -> f32;
+}
