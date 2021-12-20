@@ -16,7 +16,6 @@ const HEIGHT: u32 = 240;
 
 struct World {
     renderer: ray_marching::Renderer,
-    objects: objects::ObjectStore,
 }
 
 fn main() -> Result<(), Error> {
@@ -79,7 +78,6 @@ impl World {
     fn new() -> Self {
         Self {
             renderer: ray_marching::Renderer::new(WIDTH, HEIGHT),
-            objects: objects::ObjectStore::new(),
         }
     }
 
@@ -92,7 +90,7 @@ impl World {
             let pos = general_types::Point2::new((i % WIDTH as usize) as f32, (i / WIDTH as usize )as f32);
 
 
-            let rgba= self.renderer.march_pixel(pos, &self.objects);
+            let rgba= self.renderer.march_pixel(pos);
 
             pixel.copy_from_slice(&rgba);
         }
