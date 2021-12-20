@@ -7,7 +7,7 @@ use winit::window::WindowBuilder;
 use winit_input_helper::WinitInputHelper;
 
 
-mod types;
+mod general_types;
 mod ray_marching;
 
 const WIDTH: u32 = 320;
@@ -86,7 +86,7 @@ impl World {
 
     fn draw(&mut self, frame: &mut [u8]) {
         for (i, pixel) in frame.chunks_exact_mut(4).enumerate() {
-            let pos = types::Point2::new((i % WIDTH as usize) as f32, (i / WIDTH as usize )as f32);
+            let pos = general_types::Point2::new((i % WIDTH as usize) as f32, (i / WIDTH as usize )as f32);
 
 
             let rgba= self.renderer.march_pixel(pos);
