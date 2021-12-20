@@ -1,9 +1,11 @@
+#[derive(Copy, Clone)]
 pub struct Point3 {
 	pub x: f32,
 	pub y: f32,
 	pub z: f32
 }
 
+#[derive(Copy, Clone)]
 pub struct Point2 {
 	pub x: f32,
 	pub y: f32
