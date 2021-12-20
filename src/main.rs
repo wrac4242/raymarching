@@ -12,7 +12,7 @@ mod ray_marching;
 mod objects;
 
 const WIDTH: u32 = 320;
-const HEIGHT: u32 = 240;
+const HEIGHT: u32 = 320;
 
 struct World {
     renderer: ray_marching::Renderer,
