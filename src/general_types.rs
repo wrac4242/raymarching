@@ -1,4 +1,4 @@
-use std::ops::{Sub, Add, Mul, Div};
+use std::ops::{Sub, Add, Mul, Div, AddAssign};
 
 #[derive(Copy, Clone)]
 pub struct Point3 {
@@ -41,6 +41,14 @@ impl Point3 {
 		(self.x.powi(2) + self.y.powi(2) + self.z.powi(2)).sqrt()
 	}
 
+	pub fn modulo(self, modulo: f32) -> Point3 {
+		Point3 {
+			x: self.x % modulo,
+			y: self.y % modulo,
+			z: self.z % modulo
+		}
+	}
+
 }
 
 impl Sub for Point3 {
@@ -50,6 +58,17 @@ impl Sub for Point3 {
 			x: self.x - other.x,
 			y: self.y - other.y,
 			z: self.z - other.z
+		}
+	}
+}
+
+impl Sub<f32> for Point3 {
+	type Output = Point3;
+	fn sub(self, other: f32) -> Point3 {
+		Point3 {
+			x: self.x - other,
+			y: self.y - other,
+			z: self.z - other
 		}
 	}
 }
@@ -65,6 +84,17 @@ impl Add for Point3 {
 	}
 }
 
+impl Add<f32> for Point3 {
+	type Output = Point3;
+	fn add(self, other: f32) -> Point3 {
+		Point3 {
+			x: self.x + other,
+			y: self.y + other,
+			z: self.z + other
+		}
+	}
+}
+
 impl Mul for Point3 {
 	type Output = Point3;
 	fn mul(self, other: Point3) -> Point3 {
@@ -73,6 +103,25 @@ impl Mul for Point3 {
 			y: self.y * other.y,
 			z: self.z * other.z
 		}
+	}
+}
+
+impl Mul<f32> for Point3 {
+	type Output = Point3;
+	fn mul(self, other: f32) -> Point3 {
+		Point3 {
+			x: self.x * other,
+			y: self.y * other,
+			z: self.z * other
+		}
+	}
+}
+
+impl AddAssign for Point3 {
+	fn add_assign(&mut self, other: Point3) {
+		self.x += other.x;
+		self.y += other.y;
+		self.z += other.z;
 	}
 }
 
@@ -88,10 +137,9 @@ impl Div for Point3 {
 }
 
 
-pub type Colour = [u8; 4];
 
 pub mod colour_types {
-	use crate::general_types::Colour;
+	pub type Colour = [u8; 4];
 	pub fn new(r: u8, g: u8, b: u8, a: u8) -> Colour {
 		[r, g, b, a]
 	}
@@ -99,5 +147,5 @@ pub mod colour_types {
 
 
 pub trait Object {
-	fn distance(&self, point: Point3) -> f32;
+	fn distance(&self, point: Point3) -> (f32, colour_types::Colour);
 }
