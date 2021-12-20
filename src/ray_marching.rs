@@ -18,20 +18,15 @@ impl Renderer {
 
 	fn object_init() -> objects::ObjectStore {
 		let mut obj_store = objects::ObjectStore::new();
-		obj_store.add_object(Box::new(objects::primitives::Sphere::new(
-			Point3::new(0.0, 0.0, 2.0),
-			0.5,
-			colour_types::new(255, 0, 0, 255),
-		)));
-		obj_store.add_object(Box::new(objects::primitives::Sphere::new(
-			Point3::new(0.5, 0.5, 2.0),
-			0.5,
+		obj_store.add_object(Box::new(objects::primitives::Plane::new(
+			Point3::new(0.0, 1.0, 0.0),
 			colour_types::new(0, 255, 0, 255),
+			Point3::new(0.0, 0.0, 0.0)
 		)));
 		obj_store.add_object(Box::new(objects::primitives::Sphere::new(
-			Point3::new(-0.5, -0.5, 2.0),
+			Point3::new(0.0, -0.5, 1.0),
 			0.5,
-			colour_types::new(0, 0, 255, 255),
+			colour_types::new(255, 0, 0, 255)
 		)));
 		obj_store
 	}

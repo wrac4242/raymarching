@@ -41,12 +41,8 @@ impl Point3 {
 		(self.x.powi(2) + self.y.powi(2) + self.z.powi(2)).sqrt()
 	}
 
-	pub fn modulo(self, modulo: f32) -> Point3 {
-		Point3 {
-			x: self.x % modulo,
-			y: self.y % modulo,
-			z: self.z % modulo
-		}
+	pub fn dot(&self, other: Point3) -> f32 {
+		self.x * other.x + self.y * other.y + self.z * other.z
 	}
 
 }
