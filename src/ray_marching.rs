@@ -38,7 +38,7 @@ impl Renderer {
 
 
 	pub fn march_pixel(&mut self, pix: Point2) -> colour_types::Colour {
-		// calculates the pixels xy position on the screen to be between -1 and 1
+		// calculates the pixels xy position on the screen to be between -10 and 10
 		let mut pos = Point3::new(((2.0 * pix.x)/ self.width as f32) * 10.0 - 10.0, ((2.0 * pix.y) / self.height as f32) * -10.0 + 10.0, 1.0); 
 		let mut normalized_pos = pos;
 		normalized_pos.normalize();
