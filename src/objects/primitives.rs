@@ -9,9 +9,9 @@ pub struct Sphere {
 impl Sphere {
 	pub fn new(position: Point3, radius: f32, colour: colour_types::Colour) -> Self {
 		Self {
-			position: position,
-			radius: radius,
-			colour: colour,
+			position,
+			radius,
+			colour,
 		}
 	}
 }
@@ -33,9 +33,9 @@ pub struct Plane {
 impl Plane {
 	pub fn new(normal: Point3, colour: colour_types::Colour, offset: Point3) -> Self {
 		Self {
-			normal: normal,
-			colour: colour,
-			offset: offset,
+			normal,
+			colour,
+			offset,
 			normal_len: normal.length(),
 		}
 	}

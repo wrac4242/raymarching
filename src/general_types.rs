@@ -16,8 +16,8 @@ pub struct Point2 {
 impl Point2 {
 	pub fn new(x: f32, y: f32) -> Point2 {
 		Point2 {
-			x: x,
-			y: y
+			x,
+			y
 		}
 	}
 }
@@ -25,9 +25,9 @@ impl Point2 {
 impl Point3 {
 	pub fn new (x: f32, y: f32, z: f32) -> Point3 {
 		Point3 {
-			x: x,
-			y: y,
-			z: z
+			x,
+			y,
+			z
 		}
 	}
 	pub fn normalize(&mut self) {
