@@ -24,8 +24,8 @@ impl Renderer {
 			Point3::new(0.0, 0.0, 0.0)
 		)));
 		obj_store.add_object(Box::new(objects::primitives::Sphere::new(
-			Point3::new(0.0, 0.5, 1.0),
-			0.5,
+			Point3::new(0.0, 0.0, 1.0),
+			1.0,
 			colour_types::new(255, 0, 0, 255)
 		)));
 		obj_store
@@ -39,7 +39,7 @@ impl Renderer {
 
 	pub fn march_pixel(&mut self, pix: Point2) -> colour_types::Colour {
 		// calculates the pixels xy position on the screen to be between -1 and 1
-		let mut pos = Point3::new(((2.0 * pix.x)/ self.width as f32) - 1.0, ((2.0 * pix.y) / self.height as f32) * -1.0 +  1.0, 1.0); 
+		let mut pos = Point3::new(((2.0 * pix.x)/ self.width as f32) * 10.0 - 10.0, ((2.0 * pix.y) / self.height as f32) * -10.0 + 10.0, 1.0); 
 		let mut normalized_pos = pos;
 		normalized_pos.normalize();
 		
