@@ -31,7 +31,7 @@ impl Renderer {
 		obj_store
 	}
 
-	const MAXDISTANCE: f32 = 100.0;
+	const MAXDISTANCE: f32 = 500.0;
 	const MINDISTANCE: f32 = 0.01;
 	const BACKGROUND_COLOUR: colour_types::Colour = [0, 0, 0, 255];
 	const MAX_STEPS: u32 = 100;
