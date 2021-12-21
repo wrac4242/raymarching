@@ -43,7 +43,7 @@ impl Plane {
 
 impl Object for Plane {
 	fn distance(&self, point: Point3) -> (f32, colour_types::Colour) {
-		let distance = self.normal.dot(self.offset - point) / self.normal_len;
+		let distance = self.normal.dot(point - self.offset) / self.normal_len;
 		(distance, self.colour)
 	}
 }
